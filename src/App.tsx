@@ -81,8 +81,10 @@ const App = (props) => {
     )
 }
 
-export default CodePush({
+const CodepushApp = CodePush({
     deploymentKey: '',
     checkFrequency: CodePush.CheckFrequency.ON_APP_START,
     installMode: CodePush.InstallMode.ON_NEXT_RESTART
-})(App)
+})(App);
+
+export default App
