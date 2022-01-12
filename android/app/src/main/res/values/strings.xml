@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">powpow_template</string>
+    <string moduleConfig="true" name="CodePushServerUrl">http://</string>
+    <string moduleConfig="true" name="CodePushDeploymentKey"></string>
+</resources>

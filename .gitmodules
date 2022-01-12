@@ -1,0 +1,3 @@
+[submodule "powpow"]
+	path = powpow
+	url = https://code.haxibiao.cn/liuzhipeng/powpow.git
