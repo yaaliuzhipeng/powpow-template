@@ -6029,17 +6029,6 @@ react-native-fs@^2.18.0:
     base-64 "^0.1.0"
     utf8 "^3.0.0"
 
-react-native-gesture-handler@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-native-gesture-handler/-/react-native-gesture-handler-2.1.0.tgz#be7a83a7bd340a2316551a4d30d7abf06b46c1da"
-  integrity sha512-vF4yEUrV5GMBioTkvf5Le1l3N/52dSLBnNMFC+kZ4hssnRoXB0hEQ0ReUkZckRB5L3nbHBhAyjySEtFPx4nyEA==
-  dependencies:
-    "@egjs/hammerjs" "^2.0.17"
-    hoist-non-react-statics "^3.3.0"
-    invariant "^2.2.4"
-    lodash "^4.17.21"
-    prop-types "^15.7.2"
-
 react-native-html-parser@^0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/react-native-html-parser/-/react-native-html-parser-0.1.0.tgz#c35de1dc325562da26e68befa423bac34505ba48"
@@ -6054,11 +6043,6 @@ react-native-image-crop-picker@^0.37.2:
   version "0.37.2"
   resolved "https://registry.yarnpkg.com/react-native-image-crop-picker/-/react-native-image-crop-picker-0.37.2.tgz#3aadc4ae4812c9975c49a294d9a17ffae057dbb4"
   integrity sha512-YwZXW21Km8+3tSt0smTaLVgY4398c0/OJcpcH6EP0JDOt1BNNxl/R8m6qdvnwdXdIoa0CCnMVW6TL9IN5ia9OA==
-
-react-native-mmstorage@^1.0.1:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/react-native-mmstorage/-/react-native-mmstorage-1.0.2.tgz#e007f7fa8ab44343e0597659d3719bbf40145278"
-  integrity sha512-/UL/wyCMyJ9rTysSvyBB1jmgdWh3S2WYmgTwdEQclcf8M/qTZ0LRcZo2xLNXXREiGG+Fv+w5mKAYh6NY5mnFlg==
 
 react-native-pager-view@^5.4.9:
   version "5.4.9"

@@ -5,16 +5,15 @@ import { NetworkStateProvider } from '!/powpow/lib';
 import { useAndroidStatusBar } from '!/powpow/hooks';
 import { ThemeProvider, useScreenSize } from '!/powpow/theme';
 import { useSafeAreaReady } from '!/powpow/hooks';
+import BottomTabBarProvider, { useBottomTabBarSize } from '!/powpow/navigation/tabbar/BottomTabBarProvider';
 import useCodePushReady from './plugins/useCodePushReady';
-import MMStorage from 'react-native-mmstorage';
+import { FloatProvider } from '!/powpow/components'
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import SplashScreen from 'react-native-splash-screen'
 import CodePush from 'react-native-code-push';
 
-/**
- * 初始化 MMStorage , this is critical !
- */
-MMStorage.initMMStorage();
+import kvs from './data/kvs';
 
 const AppContent = React.memo((props) => {
     /**
@@ -39,10 +38,17 @@ const AppContent = React.memo((props) => {
         return true;
     }, [readyState])
 
-    useAndroidStatusBar({ dynamic: true });
+    const statusBarConfig = useRef({ dynamic: true }).current;
+    useAndroidStatusBar(statusBarConfig);
     const isSafeAreaReady = useSafeAreaReady();
     const screenSize = useScreenSize();
-    const isCodePushReady = useCodePushReady();
+    // const isCodePushReady = useCodePushReady();
+    const { ready: bottomTabBarReady } = useBottomTabBarSize();
+
+    useEffect(() => {
+        kvs.checkKeys();
+    }, [])
+
 
     useEffect(() => {
         if (isSafeAreaReady && screenSize.ready && readyStateValue.view === false) {
@@ -52,11 +58,19 @@ const AppContent = React.memo((props) => {
     }, [isSafeAreaReady, screenSize])
 
     useEffect(() => {
-        if (isCodePushReady) {
-            readyStateValue.data = true;
-            setReadyState({ ...readyStateValue });
+        if (
+            // isCodePushReady && 
+            bottomTabBarReady
+        ) {
+            setTimeout(() => {
+                readyStateValue.data = true;
+                setReadyState({ ...readyStateValue });
+            }, __DEV__ ? 0 : 200);
         }
-    }, [isCodePushReady])
+    }, [
+        // isCodePushReady, 
+        bottomTabBarReady
+    ])
 
     useEffect(() => {
         if (isReady) {
@@ -71,13 +85,17 @@ const AppContent = React.memo((props) => {
 const App = (props) => {
 
     return (
-        <NetworkStateProvider>
-            <SafeAreaProvider>
-                <ThemeProvider withScreenSizeProvider>
-                    <AppContent />
-                </ThemeProvider>
-            </SafeAreaProvider>
-        </NetworkStateProvider>
+        <GestureHandlerRootView style={{ flex: 1 }}>
+            <NetworkStateProvider>
+                <SafeAreaProvider>
+                    <ThemeProvider withScreenSizeProvider>
+                        <BottomTabBarProvider>
+                            <AppContent />
+                        </BottomTabBarProvider>
+                    </ThemeProvider>
+                </SafeAreaProvider>
+            </NetworkStateProvider>
+        </GestureHandlerRootView>
     )
 }
 
